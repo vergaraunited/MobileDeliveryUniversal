@@ -32,18 +32,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MobileDeliveryCaching" Version="1.0.0" />
-    <PackageReference Include="MobileDeliveryClient" Version="1.0.0" />
-    <PackageReference Include="MobileDeliveryLogger" Version="1.0.0" />
-    <PackageReference Include="MobileDeliveryMVVM" Version="1.0.0" />
-    <PackageReference Include="MobileDeliverySettings" Version="1.0.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Tesseract-OCR" Version="1.0.4" />
-    <PackageReference Include="UMDGeneral" Version="1.0.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
+  </ItemGroup> 
+   
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="MobileDeliveryCaching" Version="1.1.0" />
+    <PackageReference Include="MobileDeliveryClient" Version="1.1.0" />
+    <PackageReference Include="MobileDeliveryLogger" Version="1.1.1" />
+    <PackageReference Include="MobileDeliveryMVVM" Version="1.0.0" />
+    <PackageReference Include="MobileDeliverySettings" Version="1.0.0" />
+    <PackageReference Include="UMDGeneral" Version="1.2.2" />
   </ItemGroup>
+  
+  <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <ProjectReference Include="../MobileDeliveryLogger\MobileDeliveryLogger.csproj" />
+    <ProjectReference Include="../UMDGeneral\UMDGeneral.csproj" />
+    <ProjectReference Include="../MobileDeliveryCaching\MobileDeliveryCaching.csproj" />
+    <ProjectReference Include="../MobileDeliverySettings\MobileDeliverySettings.csproj" />
+    <ProjectReference Include="../MobileDeliveryMVVM\MobileDeliveryMVVM.csproj" />
+    <ProjectReference Include="../MobileDeliveryMVVM\MobileDeliveryClient.csproj" />
+  </ItemGroup> 
 
   <ItemGroup>
     <Reference Include="Windows.Foundation.UniversalApiContract">
