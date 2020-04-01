@@ -16,5 +16,10 @@ namespace MobileDeliveryUniversal.Pages
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void BtnSave_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

@@ -19,7 +19,7 @@ namespace MobileDeliveryUniversal.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(new MobileDeliveryUniversal.App());
         }
     }
 }

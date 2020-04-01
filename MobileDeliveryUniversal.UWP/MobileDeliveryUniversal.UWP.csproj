@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileDeliveryUniversal\MobileDeliveryUniversal.csproj">
-      <Project>{2B4541A2-566A-46EE-922F-A8F404E00237}</Project>
+      <Project>{78af27e2-7d01-4f8c-b98b-4cf4567cdadd}</Project>
       <Name>MobileDeliveryUniversal</Name>
     </ProjectReference>
   </ItemGroup>
