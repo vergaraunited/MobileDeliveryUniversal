@@ -1,7 +1,6 @@
 ﻿using MobileDeliveryLogger;
 using MobileDeliveryUniversal.Pages;
 using System;
-using rm *UMDGeneral.Settings;
 using Windows.Storage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
