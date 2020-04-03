@@ -32,7 +32,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="MobileDeliveryMVVM" Version="1.4.1" />
+    <PackageReference Include="MobileDeliveryMVVM" Version="1.4.2" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Tesseract-OCR" Version="1.0.4" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
