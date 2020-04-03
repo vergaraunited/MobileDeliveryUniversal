@@ -1,5 +1,5 @@
 ﻿using MobileDeliveryLogger;
-using UMDGeneral.Data;
+using MobileDeliveryGeneral.Data;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

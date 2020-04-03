@@ -1,4 +1,4 @@
-﻿using UMDGeneral.Settings;
+﻿using MobileDeliveryGeneral.Settings;
 
 namespace MobileDeliveryUniversal.Helpers
 {
@@ -34,7 +34,7 @@ namespace MobileDeliveryUniversal.Helpers
             {
                 config.winsysFiles = new WinsysFiles()
                 {
-                    WinsysDstFile = UMDGeneral.Utilities.HomeDirectoryPaths.GetUserHome(config.AppName),
+                    WinsysDstFile = MobileDeliveryGeneral.Utilities.HomeDirectoryPaths.GetUserHome(config.AppName),
                     WinsysSrcFile = @"\\Fs01\vol1\Winsys32\DATA"
                 };
             }

@@ -1,8 +1,8 @@
 ﻿using System;
-using UMDGeneral.Interfaces.DataInterfaces;
+using MobileDeliveryGeneral.Interfaces.DataInterfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using UMDGeneral.Data;
+using MobileDeliveryGeneral.Data;
 namespace MobileDeliveryUniversal.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]

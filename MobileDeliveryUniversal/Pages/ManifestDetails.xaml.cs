@@ -1,7 +1,7 @@
 ﻿using MobileDeliveryMVVM.ViewModel;
 using System;
-using UMDGeneral.Data;
-using UMDGeneral.Interfaces.DataInterfaces;
+using MobileDeliveryGeneral.Data;
+using MobileDeliveryGeneral.Interfaces.DataInterfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

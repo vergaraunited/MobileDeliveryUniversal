@@ -1,5 +1,5 @@
 ﻿using System;
-using UMDGeneral.Interfaces.DataInterfaces;
+using MobileDeliveryGeneral.Interfaces.DataInterfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
