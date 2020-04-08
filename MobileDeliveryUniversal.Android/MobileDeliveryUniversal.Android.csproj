@@ -103,11 +103,5 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MobileDeliveryUniversal\MobileDeliveryUniversal.csproj">
-      <Project>{78af27e2-7d01-4f8c-b98b-4cf4567cdadd}</Project>
-      <Name>MobileDeliveryUniversal</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
