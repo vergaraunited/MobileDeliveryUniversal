@@ -66,10 +66,10 @@ namespace MobileDeliveryUniversal.Helpers
         private static readonly int WinsysPortDefault = 8181;
 
         private const string idUMDUrl = "UMDUrl";
-        private static readonly string UMDUrlDefault = GlobalSetting.Config.srvSet.umdurl;
+        private static readonly string UMDUrlDefault = GlobalSetting.Config.srvSet.srvurl;
 
         private const string idUMDPort = "UMDPort";
-        private static readonly int UMDPortDefault = GlobalSetting.Config.srvSet.umdport;
+        private static readonly int UMDPortDefault = GlobalSetting.Config.srvSet.srvport;
 
         #endregion
 

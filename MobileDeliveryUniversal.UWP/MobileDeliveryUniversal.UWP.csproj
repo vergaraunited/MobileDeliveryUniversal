@@ -158,6 +158,12 @@
       <Version>2.1.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MobileDeliveryUniversal\MobileDeliveryUniversal.csproj">
+      <Project>{c5d46235-b899-4fb4-920b-f7594c1b547d}</Project>
+      <Name>MobileDeliveryUniversal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
