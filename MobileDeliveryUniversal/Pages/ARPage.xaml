@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MobileDeliveryMVVM.ViewModel;assembly=MobileDeliveryMVVM"
              xmlns:converters="clr-namespace:MobileDeliveryUniversal.Converters"
-             x:Class="MobileDeliveryUniversal.Pages.ManifestMaster"
-             Title="Manifest Master" >
+             x:Class="MobileDeliveryUniversal.Pages.ARPage" 
+             Title="Accounts Receivables and Invoicing" >
 
     <ContentPage.Resources>
         <converters:CommandConverter x:Key="_commandConv"/>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <viewModels:ManifestVM />
+        <viewModels:AccountsReceivableVM />
     </ContentPage.BindingContext>
-   
-    <ContentPage.Content>   
+    
+    <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
 
-        <Label Text="Manifest Master"
+            <Label Text="Manifest Master"
                             VerticalOptions="Center"
                             HorizontalTextAlignment="Center"
                             IsVisible="true"
@@ -25,7 +25,7 @@
                             TextColor="Green"
                            BackgroundColor="Blue"/>
 
-        <DatePicker x:Name="dpManifestDate"
+            <DatePicker x:Name="dpManifestDate"
                     MinimumDate="{Binding MinDate}"
                     MaximumDate="{Binding MaxDate}"
                     Format="D"
@@ -37,11 +37,11 @@
 
             <Label Text="{Binding ManifestDate}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
             <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'} " FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
-                <Label Text="{Binding ManId}"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+            <Label Text="{Binding ManId}"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
 
-            <ListView x:Name="ManifestList" ItemsSource="{Binding ManifestMaster, Mode=TwoWay}" 
-                       RowHeight="60" ItemSelected="RouteSelected">
-                <!--ListView.Behaviors>
+            <ListView x:Name="InvoicedList" ItemsSource="{Binding ARData, Mode=TwoWay}" 
+                       RowHeight="60" >
+                <!--ListView.Behaviors>  ItemSelected="InvoiceCommand">
                 SelectedItem="{Binding RouteSelectedCommand}"
                     <b:EventToCommandBehavior EventNameProperty="ItemTapped" Command="{Binding ShowUserDetail}" />
                 </-->
@@ -80,8 +80,10 @@
                                         <RowDefinition Height="*"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition> <!-- Checkbox for transferable items -->
-                                        <ColumnDefinition Width="3*"></ColumnDefinition> <!-- Driver dropdown from SQL Server Drivers-->
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <!-- Checkbox for transferable items -->
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <!-- Driver dropdown from SQL Server Drivers-->
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -89,7 +91,7 @@
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    
+
                                     <!--Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="{Binding ImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" /-->
                                     <CheckBox x:Name="checkBox" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" IsChecked="{Binding IsSelected, Mode=TwoWay}" >
                                         <VisualStateManager.VisualStateGroups>
@@ -120,7 +122,7 @@
                                         <Label Text="Drivers" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Picker Title="Select a Driver" ItemsSource="{Binding DriverList}" SelectedItem="{Binding SelectedColorName, Mode=TwoWay}" />
                                     </StackLayout>
-                                    
+
                                     <Label Grid.Row="0" Grid.Column="2" Text="{Binding TRK_CDE}" HorizontalOptions="Center" FontSize="Large" />
                                     <Label Grid.Row="0" Grid.Column="3" Text="{Binding SHIP_DTE}" HorizontalOptions="Center" />
                                     <Label Grid.Row="0" Grid.Column="4" Text="{Binding SHP_QTY}" HorizontalOptions="Center" />

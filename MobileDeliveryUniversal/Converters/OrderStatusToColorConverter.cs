@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
-using static MobileDeliveryMVVM.Models.ConnectivityModel;
+using static MobileDeliveryGeneral.Definitions.MsgTypes;
 
 namespace MobileDeliveryUniversal.Converters
 {
-    public class StringToColorConverter : IValueConverter
+    public class OrderStatusToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                ConnectState connState = (ConnectState)value;
+                OrderStatus ordState = (OrderStatus)value;
 
-                switch (connState)
+                switch (ordState)
                 {
-                    case ConnectState.Connected:
-                        return Color.Green;
-                    case ConnectState.Disconnected:
-                        return Color.Red;
+                    case OrderStatus.New:
+                        return Color.AliceBlue;
+                    case OrderStatus.Shipped:
+                        return Color.Bisque;
+                    case OrderStatus.Delivered:
+                        return Color.Honeydew;
+                    case OrderStatus.BackOrderd:
+                        return Color.WhiteSmoke;
                     default:
                         return Color.FromHex(value.ToString());
                 }

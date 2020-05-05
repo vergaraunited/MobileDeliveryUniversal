@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace MobileDeliveryUniversal.Pages
 	public partial class OrderDetails : ContentPage
 	{
         OrderData order;
-		public OrderDetails ()
+        public DateTime dteShipDate;
+        public OrderDetails ()
 		{
 			InitializeComponent ();
 		}
@@ -24,11 +26,14 @@ namespace MobileDeliveryUniversal.Pages
         }
         protected override void OnAppearing()
         {
-            //Load the Stop Data for user? Date?  Today?
             lblManId.Text = order.ManifestId.ToString();
-            base.OnAppearing();
+            lblStopNo.Text = order.DSP_SEQ.ToString();
+            lblDlrNo.Text = order.DLR_NO.ToString();
+            lblShipDate.Text = dteShipDate.ToString("D", CultureInfo.CreateSpecificCulture("en-US"));
 
+            base.OnAppearing();
         }
+
         private void OrderDetailSelected(object sender, ItemTappedEventArgs e)
         {
             //var ord = new Orders((IMDMMessage)((ListView)sender).SelectedItem);

@@ -13,21 +13,21 @@
         <viewModels:OrderDetailsVM />
     </ContentPage.BindingContext>
     <ContentPage.Behaviors>
-        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"/>
+        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadOrderDetailsCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <StackLayout>
 
             <Label Text = "{Binding LoadOrderRequestComplete}" FontSize="Large" HorizontalOptions="Center" />
-
-
-            <Label x:Name="lblManId" Text="{Binding ManifestId, StringFormat='Manifest Id : = {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblStopNo" Text="{Binding DSP_SEQ, StringFormat='Stop Number : {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblManId" Text="{Binding ManifestId, StringFormat='Manifest Id: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblOrdNo" Text="{Binding OrdNo, StringFormat='Order Number: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblStopNo" Text="{Binding DSP_SEQ, StringFormat='Stop Number: {0}', Mode=TwoWay}"  />
             <Label x:Name="lblDlrNo" Text="{Binding DlrNo, StringFormat='Dealer Number: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblLineCnt" Text="{Binding LineCount, StringFormat='Order Number : {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblLineCnt" Text="{Binding LineCount, StringFormat='Count: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblShipDate"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ShipDate, Mode=TwoWay}"  />
 
-            <ListView x:Name="OrderDetailList" ItemsSource="{Binding Orders, Mode=TwoWay}" 
+          <ListView x:Name="OrderDetailList" ItemsSource="{Binding OrderDetails, Mode=TwoWay}" 
                     RowHeight="60" ItemSelected="OrderDetailSelected" x:FieldModifier="public">
                 <ListView.Header>
                     <Grid HorizontalOptions="FillAndExpand">
@@ -37,12 +37,17 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text ="MDL_CNT" FontSize="Large" HorizontalOptions="Center" Grid.Column="0" />
-                        <Label Text ="MDL_NO" FontSize="Medium" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text ="CLR" FontSize="Large" HorizontalOptions="Center" Grid.Column="2"/>
-                        <Label Text ="WIN_CNT" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
-                        <Label Text ="CustomerId" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
+                        <Label Text ="PAT_POS" FontSize="Small" HorizontalOptions="Center" Grid.Column="0" />
+                        <Label Text ="MDL_NO" FontSize="Small" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Label Text ="OPT_TYPE" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Label Text ="OPT_NUM" FontSize="Small" HorizontalOptions="Center" Grid.Column="3"/>
+                        <Label Text ="DESC" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" />
+                        <Label Text ="WIDTH" FontSize="Small" HorizontalOptions="Center" Grid.Column="5"/>
+                        <Label Text ="HEIGHT" FontSize="Small" HorizontalOptions="Center" Grid.Column="6"/>
+                        <Label Text ="ScanTime" FontSize="Small" HorizontalOptions="Center" Grid.Column="7"/>
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -59,13 +64,18 @@
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0"/>
+                                    <Label Margin="20,0" Text ="{Binding PAT_POS}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0"/>
                                     <Label Margin="20,0" Text ="{Binding MDL_NO}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="1"/>
-                                    <Label Margin="20,0" Text ="{Binding CLR}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
-                                    <Label Margin="20,0" Text ="{Binding WIN_CNT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
-                                    <Label Margin="20,0" Text ="{Binding CustomerId}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
+                                    <Label Margin="20,0" Text ="{Binding OPT_TYPE}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
+                                    <Label Margin="20,0" Text ="{Binding OPT_NUM}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
+                                    <Label Margin="20,0" Text ="{Binding DESC}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
+                                    <Label Margin="20,0" Text ="{Binding WIDTH}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="5"/>
+                                    <Label Margin="20,0" Text ="{Binding HEIGHT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="6"/>
+                                    <Label Margin="20,0" Text ="{Binding ScanTime}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="7"/>
 
                                     <!--BoxView HeightRequest="1" BackgroundColor="Black"/>
                                         <StackLayout.GestureRecognizers>
@@ -78,7 +88,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <BindableLayout.ItemTemplate>
+          <!--BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Spacing="10" >
                         <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0"/>
@@ -94,7 +104,7 @@
                     </StackLayout>
 
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
+            </BindableLayout.ItemTemplate-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

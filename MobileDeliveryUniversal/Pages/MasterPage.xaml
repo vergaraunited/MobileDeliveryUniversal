@@ -17,6 +17,7 @@
                     <local:MasterPageItem Title="Trucks" IconSource="UnitedWindowMfg.png" TargetType="{x:Type local:Trucks}" />
                     <local:MasterPageItem Title="Stops" IconSource="UnitedWindowMfg.png" TargetType="{x:Type local:Stops}" />
                     <local:MasterPageItem Title="Orders" IconSource="UnitedWindowMfg.png" TargetType="{x:Type local:Orders}" />
+                    <local:MasterPageItem Title="Invoicing" IconSource="UnitedWindowMfg.png" TargetType="{x:Type local:ARPage}" />
                     <local:MasterPageItem Title="Settings" IconSource="UnitedWindowMfg.png" TargetType="{x:Type local:SettingsPage}" />
                 </x:Array>
             </ListView.ItemsSource>

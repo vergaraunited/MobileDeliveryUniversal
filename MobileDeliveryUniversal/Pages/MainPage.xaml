@@ -12,7 +12,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <local:SettingsPage />
+                <local:Trucks />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
