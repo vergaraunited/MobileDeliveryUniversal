@@ -1,5 +1,7 @@
 ﻿using MobileDeliveryGeneral.Data;
 using MobileDeliveryGeneral.Interfaces.DataInterfaces;
+using System;
+using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +12,7 @@ namespace MobileDeliveryUniversal.Pages
 	{
         #region locals
         StopData stop;
+        public DateTime dteShipDate;
         #endregion
 
         public Orders(StopData sd)
@@ -20,10 +23,13 @@ namespace MobileDeliveryUniversal.Pages
 
         protected override void OnAppearing()
         {
-            lblManId.Text = ((StopData)stop).ManifestId.ToString();
-            lblStopNo.Text = ((StopData)stop).DisplaySeq.ToString();
-            lblDlrNo.Text = ((StopData)stop).DealerNo.ToString();
-            lblLineCnt.Text = ((StopData)stop).DealerNo.ToString();
+            lblManId.Text = stop.ManifestId.ToString();
+            lblStopNo.Text = stop.DisplaySeq.ToString();
+            lblDlrName.Text = stop.DealerName.ToString();
+            lblDlrNo.Text = stop.DealerNo.ToString();
+            //lblLineCnt.Text = stop.DealerNo.ToString();
+
+            lblShipDate.Text = dteShipDate.ToString("D", CultureInfo.CreateSpecificCulture("en-US"));
 
             base.OnAppearing();
         }
@@ -36,19 +42,18 @@ namespace MobileDeliveryUniversal.Pages
         {
             if (((ListView)sender).SelectedItem == null)
                 return;
-            var ordData = new OrderData((OrderData)((ListView)sender).SelectedItem);
+            var ordData = (OrderData)((ListView)sender).SelectedItem;
             var orderDetailsPage = new OrderDetails(ordData);
             ((ListView)sender).SelectedItem = null;
             Navigation.PushAsync(orderDetailsPage);
             NavigationPage.SetBackButtonTitle(orderDetailsPage, "Order Details for Order Number " + ordData.ORD_NO);
+        }
 
-
-            //var ord = new Orders((IMDMMessage)((ListView)sender).SelectedItem);
-            //Navigation.PushAsync(ord);
-
-            //NavigationPage.SetBackButtonTitle(ord, $"Orders for Stop {ord.StopNumber} Truck Code: {ord.TruckCode}");
-            //Post tappedPost = (Post)((ListView)sender).SelectedItem; Navigation.PushModalAsync(new MarketItemPage(tappedPost.Id, tappedPost.UserId));
-
+        private void OnCompleteStop(object sender, EventArgs e)
+        {
+            var closeStopPage = new CloseStopPage();
+            //closeStopPage.BindingContext = e.SelectedItem as Contact;
+            Navigation.PushModalAsync(closeStopPage);
         }
     }
 }

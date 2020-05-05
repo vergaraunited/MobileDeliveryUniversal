@@ -14,7 +14,6 @@ namespace MobileDeliveryUniversal.Pages
 		}
         protected override void OnAppearing()
         {
-            //Load the Truck Data for user? Date?  Today?
             base.OnAppearing();
         }
        

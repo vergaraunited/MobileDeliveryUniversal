@@ -36,13 +36,14 @@
 
             <Label Text="{Binding Source={x:Reference Trucks}, Path=SelectedItem}" />
 
-            <Button Text="Load Truck Manifest" BackgroundColor="Blue" Command="{Binding LoadCommand,Converter={StaticResource _commandConv}}" />
+            <Button Text="Load Truck Manifest" BackgroundColor="Blue" 
+                    Command="{Binding LoadCommand,Converter={StaticResource _commandConv}}" />
 
-            <Label Text="{Binding ManifestDate}"  />
-            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'}"/>
-            <Label Text="{Binding TOTORDERS, StringFormat='The Total Order count is {0:F0}'}"/>
-            <Label Text="{Binding TOTORDERDETAILS, StringFormat='The Total Order Detail count is {0:F0}'}"/>
-            <Label Text="{Binding TRUCKCODE, StringFormat='The Current Truck Code is {0}'}"/>
+            <Label Text="{Binding ManifestDate}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20"  />
+            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'} " FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+            <Label Text="{Binding TOTORDERS, StringFormat='The Total Order count is {0:F0}'}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20"/>
+            <Label Text="{Binding TOTORDERDETAILS, StringFormat='The Total Order Detail count is {0:F0}'}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+            <Label Text="{Binding TRUCKCODE, StringFormat='The Current Truck Code is {0}'}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
 
 
             <ListView x:Name="StopList" ItemsSource="{Binding Stops, Mode=TwoWay}" RowHeight="60" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
@@ -98,7 +99,7 @@
             </ListView>
 
 
-            <ListView x:Name="OrderList" ItemsSource="{Binding Orders, Mode=TwoWay}" RowHeight="60" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
+            <ListView x:Name="OrderList" ItemsSource="{Binding ManifestDetails, Mode=TwoWay}" RowHeight="60" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
                       SelectedItem="{Binding SelectedOrder,Mode=TwoWay}" HasUnevenRows="True"  CachingStrategy="RecycleElement" SeparatorVisibility="None">
 
                 <ListView.Header>
