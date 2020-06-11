@@ -14,7 +14,6 @@ namespace MobileDeliveryUniversal.Pages
 		}
         protected override void OnAppearing()
         {
-            //Load the Truck Data for user? Date?  Today?
             base.OnAppearing();
         }
        
@@ -48,6 +47,12 @@ namespace MobileDeliveryUniversal.Pages
             //        masterPage.listView.SelectedItem = null;
             //    }
             //}
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
         }
     }
 }

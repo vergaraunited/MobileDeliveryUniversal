@@ -19,9 +19,12 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text = "{Binding LoadStopRequestComplete}" FontSize="Large" HorizontalOptions="Center" />
+            <Label x:Name="lblManId"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ManifestId, Mode=TwoWay}"  />
+            <Label x:Name="lblShipDate"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ShipDate, Mode=TwoWay}"  />
+            <Label x:Name="lblDesc" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding Desc, StringFormat='Stop Number: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblNotes" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding NOTES, StringFormat='Dealer Name: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblTruck" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding Truck, StringFormat='Dealer Name: {0}', Mode=TwoWay}"  />
 
-            <Label x:Name="lblManId" Text="{Binding ManifestId, Mode=TwoWay}"  />
             <Button Text="Load Stops" BackgroundColor="Blue" Command="{Binding LoadCommand,Converter={StaticResource _commandConv}}" />
             
             <ListView x:Name="StopsList" ItemsSource="{Binding Stops, Mode=TwoWay}" 
@@ -29,16 +32,14 @@
                 <ListView.Header>
                     <Grid HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text ="DisplaySeq" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="Address" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="Description" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="Notes" FontSize="Large" HorizontalOptions="Center" Grid.Column="2"/>
-                    </Grid>
+                        <Label Text ="Stop" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
+                        <Label Text ="Customer" FontSize="Small"  TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Label Text ="Address" FontSize="Small"  TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2"/>
+                     </Grid>
                 </ListView.Header>
 
                 <ListView.ItemTemplate>
@@ -50,16 +51,15 @@
                                         <RowDefinition Height="*"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="5*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                         
-                                    <Label Text ="{Binding DisplaySeq}" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                                    <Label Text ="{Binding Address}" FontSize="Large" HorizontalOptions="Center" Grid.Column="1"/>
-                                    <Label Text ="{Binding Description}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
-                                    <Label Text ="{Binding Notes}" FontSize="Large" HorizontalOptions="Center" Grid.Column="3"/>
+                                    <Label Text ="{Binding DisplaySeq}" FontSize="Small" HorizontalOptions="Center" Grid.Column="0"/>
+                                    <Label Text ="{Binding DealerName}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1"/>
+                                    <Label Text ="{Binding Address}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
+                                    
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>

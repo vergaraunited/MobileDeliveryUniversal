@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,9 @@ namespace MobileDeliveryUniversal.Pages
 	public partial class OrderDetails : ContentPage
 	{
         OrderData order;
-		public OrderDetails ()
+        float OrdNo;
+        public DateTime dteShipDate;
+        public OrderDetails ()
 		{
 			InitializeComponent ();
 		}
@@ -21,14 +24,19 @@ namespace MobileDeliveryUniversal.Pages
         {
             InitializeComponent();
             order = od;
+            OrdNo = od.ORD_NO;
         }
         protected override void OnAppearing()
         {
-            //Load the Stop Data for user? Date?  Today?
             lblManId.Text = order.ManifestId.ToString();
-            base.OnAppearing();
+            lblOrdNo.Text = order.ORD_NO.ToString();
+            //lblStopNo.Text = order.DSP_SEQ.ToString();
+            lblDlrNo.Text = order.DLR_NO.ToString();
+            lblShipDate.Text = dteShipDate.ToString("dddd, MMMM dd, yyyy");
 
+            base.OnAppearing();
         }
+
         private void OrderDetailSelected(object sender, ItemTappedEventArgs e)
         {
             //var ord = new Orders((IMDMMessage)((ListView)sender).SelectedItem);
@@ -37,6 +45,11 @@ namespace MobileDeliveryUniversal.Pages
             //NavigationPage.SetBackButtonTitle(ord, $"Orders for Stop {ord.StopNumber} Truck Code: {ord.TruckCode}");
             //Post tappedPost = (Post)((ListView)sender).SelectedItem; Navigation.PushModalAsync(new MarketItemPage(tappedPost.Id, tappedPost.UserId));
 
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
         }
     }    
 }

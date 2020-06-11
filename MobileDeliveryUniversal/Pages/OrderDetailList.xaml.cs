@@ -26,8 +26,8 @@ namespace MobileDeliveryUniversal.Pages
                 "Item 4",
                 "Item 5"
             };
-			
-			MyListView.ItemsSource = Items;
+
+          //  _oldOrderVM.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

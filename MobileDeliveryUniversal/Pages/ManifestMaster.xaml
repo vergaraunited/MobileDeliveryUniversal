@@ -35,10 +35,9 @@
 
             <Button Text="Load Manifest" BackgroundColor="Blue" Command="{Binding LoadManifestCommand,Converter={StaticResource _commandConv}}" />
 
-            <Label Text="{Binding ManifestDate}"  />
-            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'}"/>
-            <Label Text="{Binding ManId}"  />
-
+            <Label Text="{Binding ManifestDate}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'} " FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+                <Label Text="{Binding ManId}"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
 
             <ListView x:Name="ManifestList" ItemsSource="{Binding ManifestMaster, Mode=TwoWay}" 
                        RowHeight="60" ItemSelected="RouteSelected">

@@ -34,12 +34,16 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="MobileDeliveryMVVM" Version="1.5.4" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
     <PackageReference Include="Tesseract-OCR" Version="1.0.4" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\MobileDeliveryMVVM\MobileDeliveryMVVM.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +56,9 @@
   <ItemGroup>
     <Compile Update="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\CloseStopPage.xaml.cs">
+      <DependentUpon>CloseStopPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\Trucks.xaml.cs">
       <DependentUpon>Trucks.xaml</DependentUpon>
@@ -70,6 +77,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ARPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\CloseStopPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\OrderDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -120,8 +133,4 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="nuget restore $(ProjectPath)" />
-  </Target>
 </Project>

@@ -13,21 +13,9 @@
     <ContentPage.BindingContext>
         <viewModels:TruckVM />
     </ContentPage.BindingContext>
-    <ContentPage.Behaviors>
-        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"/>
-    </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <StackLayout>
-            <DatePicker x:Name="dpTruckDate"
-                    MinimumDate="{Binding MinDate}"
-                    MaximumDate="{Binding MaxDate}"
-                    Format="D"
-                    Margin="30, 0, 0, 30"
-                    Date="{Binding TruckDate, Mode=TwoWay}"
-                    />
-
-            <Label Text = "{Binding LoadTruckRequestComplete}" FontSize="Large" HorizontalOptions="Center" />
             
             <Button Text="Load Trucks" BackgroundColor="Blue" Command="{Binding LoadCommand,Converter={StaticResource _commandConv}}" />
 
@@ -37,20 +25,18 @@
                     <Grid HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text ="TRK_CDE" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="FirstName" FontSize="Large" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text ="LastName" FontSize="Large" HorizontalOptions="Center" Grid.Column="2" />
-                        <Label Text ="Desc" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
-                        <Label Text ="NOTES" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
-                        <Label Text ="ManId" FontSize="Medium" HorizontalOptions="Center" Grid.Column="5"/>
-                        <Label Text ="Id" FontSize="Medium" HorizontalOptions="Center" Grid.Column="6"/>
+                        <Label Text ="Truck" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
+                        <Label Text ="FirstName" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Label Text ="LastName" FontSize="Medium" TextColor="#4169e1" Font="Bold,20"  HorizontalOptions="Center" Grid.Column="2" />
+                        <Label Text ="Desc" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
+                        <Label Text ="NOTES" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
+                        <Label Text ="Date" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
                     </Grid>
                 </ListView.Header>
 
@@ -64,20 +50,18 @@
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text = "{Binding TRK_CDE}" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                                    <Label Text = "{Binding FirstName}" FontSize="Large" HorizontalOptions="Center" Grid.Column="1"/>
-                                    <Label Text = "{Binding LastName}" FontSize="Large" HorizontalOptions="Center" Grid.Column="2"/>
-                                    <Label Text = "{Binding Desc}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
-                                    <Label Text = "{Binding NOTES}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
-                                    <Label Text ="{Binding ManifestId}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="5"/>
-                                    <Label Text ="{Binding Id}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="6"/>
+                                    <Label Text = "{Binding TRK_CDE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="0"/>
+                                    <Label Text = "{Binding FirstName}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1"/>
+                                    <Label Text = "{Binding LastName}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
+                                    <Label Text = "{Binding Desc}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3"/>
+                                    <Label Text = "{Binding NOTES}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4"/>
+                                    <Label Text ="{Binding SHIP_DTE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5"/>
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>

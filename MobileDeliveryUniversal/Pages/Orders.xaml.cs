@@ -1,5 +1,9 @@
 ﻿using MobileDeliveryGeneral.Data;
 using MobileDeliveryGeneral.Interfaces.DataInterfaces;
+using MobileDeliveryMVVM.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +14,7 @@ namespace MobileDeliveryUniversal.Pages
 	{
         #region locals
         StopData stop;
+        public DateTime dteShipDate;
         #endregion
 
         public Orders(StopData sd)
@@ -20,10 +25,12 @@ namespace MobileDeliveryUniversal.Pages
 
         protected override void OnAppearing()
         {
-            lblManId.Text = ((StopData)stop).ManifestId.ToString();
-            lblStopNo.Text = ((StopData)stop).DisplaySeq.ToString();
-            lblDlrNo.Text = ((StopData)stop).DealerNo.ToString();
-            lblLineCnt.Text = ((StopData)stop).DealerNo.ToString();
+            lblStopNo.Text = stop.DisplaySeq.ToString();
+            lblDlrName.Text = stop.DealerName.ToString();
+            lblDlrNo.Text = stop.DealerNo.ToString();
+            //lblLineCnt.Text = stop.DealerNo.ToString();
+            lblManId.Text = stop.ManifestId.ToString();
+            lblShipDate.Text = dteShipDate.ToString("dddd, MMMM dd, yyyy");
 
             base.OnAppearing();
         }
@@ -36,19 +43,33 @@ namespace MobileDeliveryUniversal.Pages
         {
             if (((ListView)sender).SelectedItem == null)
                 return;
-            var ordData = new OrderData((OrderData)((ListView)sender).SelectedItem);
+            var ordData = (OrderData)((ListView)sender).SelectedItem;
             var orderDetailsPage = new OrderDetails(ordData);
             ((ListView)sender).SelectedItem = null;
             Navigation.PushAsync(orderDetailsPage);
             NavigationPage.SetBackButtonTitle(orderDetailsPage, "Order Details for Order Number " + ordData.ORD_NO);
+        }
 
+        private void OnCompleteOrder(object sender, EventArgs e)
+        {
+            var vm = this.BindingContext as OrderVM;
+            var lstOD = new List<OrderData>(vm.CompletedOrders);
+            var lstBOD = new List<OrderData>(vm.Orders);
 
-            //var ord = new Orders((IMDMMessage)((ListView)sender).SelectedItem);
-            //Navigation.PushAsync(ord);
+            var closeStopPage = new CloseStopPage(stop, lstOD,lstBOD);
 
-            //NavigationPage.SetBackButtonTitle(ord, $"Orders for Stop {ord.StopNumber} Truck Code: {ord.TruckCode}");
-            //Post tappedPost = (Post)((ListView)sender).SelectedItem; Navigation.PushModalAsync(new MarketItemPage(tappedPost.Id, tappedPost.UserId));
+            Navigation.PushModalAsync(closeStopPage);
 
+            Navigation.PopAsync(true);
+
+            // NavigationPage.SetBackButtonTitle(closeStopPage, "Proof of Delivery Signature Form: " + vm.DlrName);
+
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
         }
     }
 }
