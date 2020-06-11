@@ -4,10 +4,12 @@
              xmlns:viewModels="clr-namespace:MobileDeliveryMVVM.ViewModel;assembly=MobileDeliveryMVVM"
              xmlns:converters="clr-namespace:MobileDeliveryUniversal.Converters"
              x:Class="MobileDeliveryUniversal.Pages.ARPage" 
-             Title="Accounts Receivables and Invoicing" >
+             Title="Accounts Receivables and Invoicing" 
+             xmlns:controls="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms">
 
     <ContentPage.Resources>
         <converters:CommandConverter x:Key="_commandConv"/>
+        <converters:BytesToImageConverter x:Key="_imgConv"/>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
         <viewModels:AccountsReceivableVM />
@@ -16,7 +18,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
 
-            <Label Text="Manifest Master"
+            <Label Text="Billing and Invoicing"
                             VerticalOptions="Center"
                             HorizontalTextAlignment="Center"
                             IsVisible="true"
@@ -25,46 +27,34 @@
                             TextColor="Green"
                            BackgroundColor="Blue"/>
 
-            <DatePicker x:Name="dpManifestDate"
-                    MinimumDate="{Binding MinDate}"
-                    MaximumDate="{Binding MaxDate}"
-                    Format="D"
-                    Margin="30, 0, 0, 30"
-                    Date="{Binding ManifestDate, Mode=TwoWay}"
-                    />
-
-            <Button Text="Load Manifest" BackgroundColor="Blue" Command="{Binding LoadManifestCommand,Converter={StaticResource _commandConv}}" />
+            <Button Text="Load Delivered Orders" BackgroundColor="Blue" Command="{Binding LoadInvoicesCommand,Converter={StaticResource _commandConv}}" />
 
             <Label Text="{Binding ManifestDate}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
-            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'} " FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
+            <Label Text="{Binding ROUTECOUNT, StringFormat='The Route count is {0:F0}'}" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
             <Label Text="{Binding ManId}"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" />
 
-            <ListView x:Name="InvoicedList" ItemsSource="{Binding ARData, Mode=TwoWay}" 
-                       RowHeight="60" >
+            <ListView x:Name="InvoicedList" ItemsSource="{Binding InvoiceData, Mode=TwoWay}" 
+                       RowHeight="60" x:FieldModifier="public" HasUnevenRows="True">
                 <!--ListView.Behaviors>  ItemSelected="InvoiceCommand">
                 SelectedItem="{Binding RouteSelectedCommand}"
                     <b:EventToCommandBehavior EventNameProperty="ItemTapped" Command="{Binding ShowUserDetail}" />
                 </-->
                 <ListView.Header>
-
-
                     <Grid HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <!--ColumnDefinition Width="2*"></-->
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="8*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text ="Select" FontSize="Large" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="Driver" FontSize="Large" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text ="Truck Code" FontSize="Large" HorizontalOptions="Center" Grid.Column="2"/>
-                        <Label Text ="Ship Date" FontSize="Large" HorizontalOptions="Center" Grid.Column="3"/>
-                        <Label Text ="Ship Qty" FontSize="Large" HorizontalOptions="Center" Grid.Column="4" />
-                        <Label Text ="Link" FontSize="Large" HorizontalOptions="Center" Grid.Column="5"/>
-                        <Label Text ="Count" FontSize="Large" HorizontalOptions="Center" Grid.Column="6"/>
+                        <!--Label Text ="Ord #" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0"/-->
+                        <Label Text ="DealerName" FontSize="Small" HorizontalOptions="Center" Grid.Column="0"/>
+                        <Label Text ="Route" FontSize="Medium" HorizontalOptions="Center" Grid.Column="1"/>
+                        <Label Text ="StatusOD" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Label Text ="BillDateTime" FontSize="Small" HorizontalOptions="Center" Grid.Column="3"/>
+                        <Label Text ="Signature" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4" />
                     </Grid>
 
                 </ListView.Header>
@@ -80,54 +70,23 @@
                                         <RowDefinition Height="*"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <!-- Checkbox for transferable items -->
+                                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
-                                        <!-- Driver dropdown from SQL Server Drivers-->
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="8*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-
-                                    <!--Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="{Binding ImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" /-->
-                                    <CheckBox x:Name="checkBox" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" IsChecked="{Binding IsSelected, Mode=TwoWay}" >
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualState x:Name="Hold">
-                                                    <VisualState.Setters>
-                                                        <Setter Property="Color" Value="Red" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-
-                                                <VisualState x:Name="Transfer">
-                                                    <VisualState.Setters>
-                                                        <Setter Property="Color" Value="Green" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </CheckBox>
-                                    <Label Text="">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="true">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-
-                                    <StackLayout Margin="20">
-                                        <Label Text="Drivers" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                        <Picker Title="Select a Driver" ItemsSource="{Binding DriverList}" SelectedItem="{Binding SelectedColorName, Mode=TwoWay}" />
-                                    </StackLayout>
-
-                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding TRK_CDE}" HorizontalOptions="Center" FontSize="Large" />
-                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding SHIP_DTE}" HorizontalOptions="Center" />
-                                    <Label Grid.Row="0" Grid.Column="4" Text="{Binding SHP_QTY}" HorizontalOptions="Center" />
-                                    <Label Grid.Row="0" Grid.Column="5" Text="{Binding LINK}" HorizontalOptions="Center" />
-                                    <Label Grid.Row="0" Grid.Column="6" Text="{Binding COUNT}" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding DLR_NME}" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding RTE_CDE}" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Status}" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding BillDateTime}" HorizontalOptions="Center" />
+                                    <Image x:Name="imgSignature" HorizontalOptions="Center" Source="{Binding Signature, Converter={StaticResource _imgConv}}"
+                                           WidthRequest="200" Grid.Column="4">
+                                    </Image>
+                                    <!--Image x:Name="POD" Source="{Binding Signature}" Grid.Column="4" Grid.RowSpan="3" Margin="10,10,10,10" /-->
+                                    <!--Label Grid.Row="0" Grid.Column="5" Text="{Binding DEALER_NUM}" HorizontalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="6" Text="{Binding DEALER_PO}" HorizontalOptions="Center" /-->
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
@@ -137,7 +96,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Release Manifest" BackgroundColor="Blue" BindingContext="{Binding Source={x:Reference ManifestList}, Path=BindingContext}" Command="{Binding ReleaseManifestCommand,Converter={StaticResource _commandConv}}" />
+            <Button Text="Generate Invoices" BackgroundColor="Blue" BindingContext="{Binding Source={x:Reference InvoicedList}, Path=BindingContext}" Command="{Binding GenerateInvoicesCommand,Converter={StaticResource _commandConv}}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

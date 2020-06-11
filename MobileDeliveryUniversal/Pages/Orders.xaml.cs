@@ -1,6 +1,8 @@
 ﻿using MobileDeliveryGeneral.Data;
 using MobileDeliveryGeneral.Interfaces.DataInterfaces;
+using MobileDeliveryMVVM.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,13 +25,12 @@ namespace MobileDeliveryUniversal.Pages
 
         protected override void OnAppearing()
         {
-            lblManId.Text = stop.ManifestId.ToString();
             lblStopNo.Text = stop.DisplaySeq.ToString();
             lblDlrName.Text = stop.DealerName.ToString();
             lblDlrNo.Text = stop.DealerNo.ToString();
             //lblLineCnt.Text = stop.DealerNo.ToString();
-
-            lblShipDate.Text = dteShipDate.ToString("D", CultureInfo.CreateSpecificCulture("en-US"));
+            lblManId.Text = stop.ManifestId.ToString();
+            lblShipDate.Text = dteShipDate.ToString("dddd, MMMM dd, yyyy");
 
             base.OnAppearing();
         }
@@ -49,11 +50,26 @@ namespace MobileDeliveryUniversal.Pages
             NavigationPage.SetBackButtonTitle(orderDetailsPage, "Order Details for Order Number " + ordData.ORD_NO);
         }
 
-        private void OnCompleteStop(object sender, EventArgs e)
+        private void OnCompleteOrder(object sender, EventArgs e)
         {
-            var closeStopPage = new CloseStopPage();
-            //closeStopPage.BindingContext = e.SelectedItem as Contact;
+            var vm = this.BindingContext as OrderVM;
+            var lstOD = new List<OrderData>(vm.CompletedOrders);
+            var lstBOD = new List<OrderData>(vm.Orders);
+
+            var closeStopPage = new CloseStopPage(stop, lstOD,lstBOD);
+
             Navigation.PushModalAsync(closeStopPage);
+
+            Navigation.PopAsync(true);
+
+            // NavigationPage.SetBackButtonTitle(closeStopPage, "Proof of Delivery Signature Form: " + vm.DlrName);
+
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
         }
     }
 }

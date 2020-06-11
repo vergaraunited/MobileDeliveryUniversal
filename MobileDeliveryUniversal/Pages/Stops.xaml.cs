@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileDeliveryGeneral.Data;
 using System.Globalization;
+using MobileDeliveryGeneral.ExtMethods;
 
 namespace MobileDeliveryUniversal.Pages
 {
@@ -11,8 +12,8 @@ namespace MobileDeliveryUniversal.Pages
 	public partial class Stops : ContentPage
 	{
         #region locals
-        string TRK_CDE;
-        public DateTime SHIP_DTE;
+        public string TRK_CDE;
+        public long SHIP_DTE;
         TruckData truck;
 
         #endregion
@@ -21,8 +22,10 @@ namespace MobileDeliveryUniversal.Pages
             InitializeComponent();
             truck=td;
             SHIP_DTE = td.SHIP_DTE;
-            lblShipDate.Text = td.SHIP_DTE.ToString("D",
-                  CultureInfo.CreateSpecificCulture("en-US"));
+            lblShipDate.Text = td.SHIP_DTE.ToString("dddd, MMMM dd, yyyy");
+            lblDesc.Text = td.Desc;
+            lblNotes.Text = td.NOTES;
+            lblTruck.Text = td.TRK_CDE;
         }
         public Stops()
 		{
@@ -42,7 +45,8 @@ namespace MobileDeliveryUniversal.Pages
             var stpData = (StopData)((ListView)sender).SelectedItem;
 
             var ord = new Orders(stpData);
-            ord.dteShipDate = SHIP_DTE;
+           // ord.dteShipDate = SHIP_DTE;
+            ord.dteShipDate =  ExtensionMethods.FromJulianToGregorianDT(SHIP_DTE, "yyyy-MM-dd").Date;
             // var orderPage = new Orders(ord)
             ((ListView)sender).SelectedItem = null;
             Navigation.PushAsync(ord);
@@ -50,6 +54,12 @@ namespace MobileDeliveryUniversal.Pages
             NavigationPage.SetBackButtonTitle(ord, $"Orders for Stop {stpData.DisplaySeq} Truck Code: {stpData.TruckCode} ManifestId: {stpData.ManifestId}");
             //Post tappedPost = (Post)((ListView)sender).SelectedItem; Navigation.PushModalAsync(new MarketItemPage(tappedPost.Id, tappedPost.UserId));
 
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
         }
     }
 }
