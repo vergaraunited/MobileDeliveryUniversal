@@ -16,14 +16,6 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <DatePicker x:Name="dpTruckDate"
-                    MinimumDate="{Binding MinDate}"
-                    MaximumDate="{Binding MaxDate}"
-                    Format="D"
-                    Margin="30, 0, 0, 30"
-                    Date="{Binding TruckDate, Mode=TwoWay}"/>
-
-            <!--Label Text = "{Binding LoadTruckRequestComplete}"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" /-->
             
             <Button Text="Load Trucks" BackgroundColor="Blue" Command="{Binding LoadCommand,Converter={StaticResource _commandConv}}" />
 
@@ -38,15 +30,13 @@
                             <ColumnDefinition Width="3*"></ColumnDefinition>
                             <ColumnDefinition Width="5*"></ColumnDefinition>
                             <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text ="Truck" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
                         <Label Text ="FirstName" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
                         <Label Text ="LastName" FontSize="Medium" TextColor="#4169e1" Font="Bold,20"  HorizontalOptions="Center" Grid.Column="2" />
                         <Label Text ="Desc" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
                         <Label Text ="NOTES" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
-                        <Label Text ="ManId" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
-                        <Label Text ="Id" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
+                        <Label Text ="Date" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
                     </Grid>
                 </ListView.Header>
 
@@ -65,15 +55,13 @@
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Label Text = "{Binding TRK_CDE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="0"/>
                                     <Label Text = "{Binding FirstName}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1"/>
                                     <Label Text = "{Binding LastName}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
                                     <Label Text = "{Binding Desc}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3"/>
                                     <Label Text = "{Binding NOTES}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4"/>
-                                    <Label Text ="{Binding ManifestId}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5"/>
-                                    <Label Text ="{Binding Id}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6"/>
+                                    <Label Text ="{Binding SHIP_DTE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5"/>
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>

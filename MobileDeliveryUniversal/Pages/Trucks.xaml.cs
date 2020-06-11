@@ -48,5 +48,11 @@ namespace MobileDeliveryUniversal.Pages
             //    }
             //}
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(true);
+            return true;
+        }
     }
 }

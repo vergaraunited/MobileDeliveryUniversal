@@ -18,148 +18,161 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}" >
-            <!--Label Text = "{Binding LoadOrderRequestComplete}" FontSize="Large" HorizontalOptions="Center" /-->
-            <Label x:Name="lblManId" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ManifestId, StringFormat='Manifest Id: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblStopNo" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding DSP_SEQ, StringFormat='Stop Number: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblDlrName" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding DealerName, StringFormat='Dealer Name: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblDlrNo" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding DlrNo, StringFormat='Dealer Number: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblOrdCnt" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding LineCount, StringFormat='Order Count: {0}', Mode=TwoWay}"  />
-            <Label x:Name="lblShipDate"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ShipDate, Mode=TwoWay}"  />
+        <StackLayout>
+            <!--BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}" -->
+            <Label x:Name="lblManId" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ManifestId, StringFormat='Manifest Id: {0}', Mode=TwoWay}"  IsVisible="False"/>
+            <Label x:Name="lblStopNo" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding DSP_SEQ, StringFormat='Stop Number: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblDlrName" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding DealerName, StringFormat='Dealer Name: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblDlrNo" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding DlrNo, StringFormat='Dealer Number: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblOrdCnt" FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding LineCount, StringFormat='Order Count: {0}', Mode=TwoWay}"  />
+            <Label x:Name="lblShipDate"  FontSize="Medium" TextColor="Black" Font="Bold,20" Text="{Binding ShipDate, Mode=TwoWay}"  />
 
             <ScrollView VerticalScrollBarVisibility="Default"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-            <ListView x:Name="OrderList" ItemsSource="{Binding Orders, Mode=TwoWay}" 
-                    RowHeight="60" ItemSelected="OrderSelected" x:FieldModifier="public">
-            <!--IsGroupingEnabled="True"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    RefreshCommand="{Binding LoadOrdersCommand}"-->
-                <ListView.Header>
-                    <Grid HorizontalOptions="FillAndExpand">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="4*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="9*"></ColumnDefinition>
-                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
+                <Frame BorderColor="BurlyWood" CornerRadius="10" HasShadow="True">
+                    <Label Text="Shipped Orders" HorizontalOptions="End" VerticalOptions="Center" />
+                    <ListView x:Name="OrderList" ItemsSource="{Binding Orders, Mode=TwoWay}" 
+                    RowHeight="60" ItemSelected="OrderSelected" x:FieldModifier="public" HasUnevenRows="True">
+                        <ListView.Header>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="9*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
 
-                        <Label Text ="Deliver" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
-                        <Label Text ="Order #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text ="Line #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2" />
-                        <Label Text ="Unit #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
-                        <Label Text ="Color" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
-                        <Label Text ="Description" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
-                        <Label Text ="Weight" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
-                        <Label Text ="Height" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="7"/>
-                    </Grid>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Height="100" >
-                            <ViewCell.View>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}">
+                                <Label Text ="" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
+                                <Label Text ="Order #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
+                                <Label Text ="RTE_CDE" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2" />
+                                <Label Text ="SHP_QTY" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
+                                <Label Text ="WIN_QTY" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
+                                <Label Text ="DLR_NME" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
+                                <Label Text ="CUS_CSZ" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
+                                <Label Text ="DLR_NO" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="7"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100" >
+                                    <ViewCell.View>
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                        <ColumnDefinition Width="9*"></ColumnDefinition>
-                                        <ColumnDefinition Width="6*"></ColumnDefinition>
-                                        <ColumnDefinition Width="6*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <!--Label Text="{Binding Path=Monitored,Converter={StaticResource BoolToStringConverter}}" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" /-->
-                                    <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="End" BackgroundColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding ORD_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding WIN_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding CLR}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding DESC}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding WIDTH}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    <Label Margin="20,0" Text ="{Binding HEIGHT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="7" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                </Grid>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                <ColumnDefinition Width="9*"></ColumnDefinition>
+                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="End" BackgroundColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding ORD_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding RTE_CDE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding SHP_QTY}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding WIN_QTY}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding DLR_NME}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding CUS_CSZ}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding DLR_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="7" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                        </Grid>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
             </ScrollView>
-           
-
 
             <ScrollView VerticalScrollBarVisibility="Default"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <!--Label Text = "{Binding LoadOrderRequestC</StackLayout>omplete}" FontSize="Large" HorizontalOptions="Center" /-->
+                <Frame BorderColor="Gold" CornerRadius="10" HasShadow="True">
+                    <Label Text="Delivered Orders" HorizontalOptions="End" VerticalOptions="Center" />
+                    <ListView x:Name="CompletedOrderList" ItemsSource="{Binding CompletedOrders, Mode=TwoWay}" 
+                        RowHeight="60" ItemSelected="OrderSelected" x:FieldModifier="public"  HasUnevenRows="True">
+                        <ListView.Header>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="9*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
 
-                <ListView x:Name="CompletedOrderList" ItemsSource="{Binding CompletedOrders, Mode=TwoWay}" 
-                        RowHeight="60" ItemSelected="OrderSelected" x:FieldModifier="public">
-                    <ListView.Header>
-                        <Grid HorizontalOptions="FillAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="4*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="9*"></ColumnDefinition>
-                                <ColumnDefinition Width="6*"></ColumnDefinition>
-                                <ColumnDefinition Width="6*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                                <Label Text ="" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
+                                <Label Text ="Order #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
+                                <Label Text ="Route Code" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2" />
+                                <Label Text ="Ship Qty" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
+                                <Label Text ="WIN_QTY" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
+                                <Label Text ="DLR_NME" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
+                                <Label Text ="CUS_CSZ" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
+                                <Label Text ="DLR_NO" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="7"/>
+                                
+                                <!--Label Text ="Line #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2" />
+                                <Label Text ="Unit #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
+                                <Label Text ="Color" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
+                                <Label Text ="Description" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
+                                <Label Text ="Weight" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
+                                <Label Text ="Height" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="7"/-->
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100" >
+                                    <ViewCell.View>
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}">
 
-                            <Label Text ="Deliver" FontSize="Small" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="0"/>
-                            <Label Text ="Order #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="1"/>
-                            <Label Text ="Line #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="2" />
-                            <Label Text ="Unit #" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="3"/>
-                            <Label Text ="Color" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="4"/>
-                            <Label Text ="Description" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="5"/>
-                            <Label Text ="Weight" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="6"/>
-                            <Label Text ="Height" FontSize="Medium" TextColor="#4169e1" Font="Bold,20" HorizontalOptions="Center" Grid.Column="7"/>
-                        </Grid>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="100" >
-                                <ViewCell.View>
-                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                <ColumnDefinition Width="9*"></ColumnDefinition>
+                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <!--Label Text="{Binding Path=Monitored,Converter={StaticResource BoolToStringConverter}}" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" /-->
+                                            <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="End" BackgroundColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding ORD_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding RTE_CDE}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding SHP_QTY}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding WIN_QTY}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding DLR_NME}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding CUS_CSZ}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding DLR_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="7" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                                            <ColumnDefinition Width="4*"></ColumnDefinition>
-                                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                                            <ColumnDefinition Width="9*"></ColumnDefinition>
-                                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                                            <ColumnDefinition Width="6*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <!--Label Text="{Binding Path=Monitored,Converter={StaticResource BoolToStringConverter}}" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" /-->
-                                        <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="End" BackgroundColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding ORD_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding WIN_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding CLR}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding DESC}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding WIDTH}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                        <Label Margin="20,0" Text ="{Binding HEIGHT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="7" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
-                                    </Grid>
-                                </ViewCell.View>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                            <!-- Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" HorizontalOptions="End" BackgroundColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding ORD_NO}" FontSize="Small" HorizontalOptions="Center" Grid.Column="1" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="2" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding WIN_CNT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="3" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding CLR}" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding DESC}" FontSize="Small" HorizontalOptions="Center" Grid.Column="5" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding WIDTH}" FontSize="Small" HorizontalOptions="Center" Grid.Column="6" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" />
+                                            <Label Margin="20,0" Text ="{Binding HEIGHT}" FontSize="Small" HorizontalOptions="Center" Grid.Column="7" TextColor="{Binding ., Converter={StaticResource _ordStatusConv}}" /-->
+                                        </Grid>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
             </ScrollView>
-            <Button Text="Complete Stop" BackgroundColor="Blue" Clicked="OnCompleteStop" />
+            <Button Text="Complete Stop" BackgroundColor="Blue" Clicked="OnCompleteOrder" />
 
         </StackLayout>
 
