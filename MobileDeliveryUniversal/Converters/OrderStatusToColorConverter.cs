@@ -11,6 +11,9 @@ namespace MobileDeliveryUniversal.Converters
         {
             try
             {
+                if (value == null)
+                    return Color.Default;
+
                 OrderStatus ordState = (OrderStatus)value;
 
                 switch (ordState)

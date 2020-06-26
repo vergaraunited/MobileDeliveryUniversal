@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MobileDeliverySettings;
+using MobileDeliverySettings.Settings;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +18,9 @@ namespace MobileDeliveryUniversal.Pages
             if (Device.RuntimePlatform == Device.UWP)
             {
                 MasterBehavior = MasterBehavior.Popover;
+                //Load UWP Settings
+                string url = SettingsAPI.UMDUrl;
+                UMDAppConfig cfg = SettingsAPI.LoadConfig();
             }
             
         }

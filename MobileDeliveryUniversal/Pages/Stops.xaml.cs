@@ -1,9 +1,6 @@
-﻿using System;
-using MobileDeliveryGeneral.Interfaces.DataInterfaces;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileDeliveryGeneral.Data;
-using System.Globalization;
 using MobileDeliveryGeneral.ExtMethods;
 
 namespace MobileDeliveryUniversal.Pages
@@ -45,8 +42,13 @@ namespace MobileDeliveryUniversal.Pages
             var stpData = (StopData)((ListView)sender).SelectedItem;
 
             var ord = new Orders(stpData);
-           // ord.dteShipDate = SHIP_DTE;
+
+            //run a query to get back the OrderModelData (Order Header Data for the Order Details Load).
+
+            
+            // ord.dteShipDate = SHIP_DTE;
             ord.dteShipDate =  ExtensionMethods.FromJulianToGregorianDT(SHIP_DTE, "yyyy-MM-dd").Date;
+            //ord.
             // var orderPage = new Orders(ord)
             ((ListView)sender).SelectedItem = null;
             Navigation.PushAsync(ord);

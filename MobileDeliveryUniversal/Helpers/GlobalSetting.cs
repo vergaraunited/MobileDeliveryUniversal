@@ -1,4 +1,5 @@
 ﻿using MobileDeliveryGeneral.Settings;
+using MobileDeliverySettings.Settings;
 
 namespace MobileDeliveryUniversal.Helpers
 {

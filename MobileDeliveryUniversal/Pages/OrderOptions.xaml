@@ -4,22 +4,22 @@
              xmlns:viewModels="clr-namespace:MobileDeliveryMVVM.ViewModel;assembly=MobileDeliveryMVVM"
              xmlns:behaviors="clr-namespace:MobileDeliveryUniversal.Behaviors;assembly=MobileDeliveryUniversal"
              xmlns:converters="clr-namespace:MobileDeliveryUniversal.Converters"
-             x:Class="MobileDeliveryUniversal.Pages.OrderDetails">
+             x:Class="MobileDeliveryUniversal.Pages.OrderOptions">
 
     <ContentPage.Resources>
         <converters:CommandConverter x:Key="_commandConv"/>
         <converters:OrderStatusToColorConverter x:Key="_ordStatusConv"/>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <viewModels:OrderDetailsVM />
+        <viewModels:OrderOptionsVM />
     </ContentPage.BindingContext>
     <ContentPage.Behaviors>
-        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadOrderDetailsCommand}"/>
+        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadOrderOptionsCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="{Binding Status, Converter={StaticResource _ordStatusConv}}" >
-            <Label Text = "{Binding LoadOrderRequestComplete}" FontSize="Large" HorizontalOptions="Center" />
+            <Label Text = "{Binding LoadOrderOptionRequestComplete}" FontSize="Large" HorizontalOptions="Center" />
             <Label x:Name="lblManId" Text="{Binding ManifestId, StringFormat='Manifest Id: {0}', Mode=TwoWay}"  />
             <Label x:Name="lblOrdNo" Text="{Binding ORD_NO, StringFormat='Order Number: {0}', Mode=TwoWay}"  />
             <Label x:Name="lblStopNo" Text="{Binding DSP_SEQ, StringFormat='Stop Number: {0}', Mode=TwoWay}"  />
@@ -27,8 +27,8 @@
             <Label x:Name="lblLineCnt" Text="{Binding LineCount, StringFormat='Count: {0}', Mode=TwoWay}"  />
             <Label x:Name="lblShipDate"  FontSize="Medium" TextColor="#4169e1" Font="Bold,20" Text="{Binding ShipDate, Mode=TwoWay}"  />
 
-          <ListView x:Name="OrderDetailList" ItemsSource="{Binding OrderDetails, Mode=TwoWay}" 
-                    RowHeight="60" ItemSelected="OrderDetailSelected" x:FieldModifier="public">
+          <ListView x:Name="OrderOptionList" ItemsSource="{Binding OrderOptions, Mode=TwoWay}" 
+                    RowHeight="60" ItemSelected="OrderOptionSelected" x:FieldModifier="public">
                 <ListView.Header>
                     <Grid HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Text ="MDL_CNT" FontSize="Small" HorizontalOptions="Center" Grid.Column="0" />
                         <Label Text ="MDL_NO" FontSize="Small" HorizontalOptions="Center" Grid.Column="1"/>
-                        <Label Text ="WIN_CNT" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
+                        <Label Text ="BIN" FontSize="Small" HorizontalOptions="Center" Grid.Column="2"/>
                         <Label Text ="Status" FontSize="Small" HorizontalOptions="Center" Grid.Column="3"/>
                         <Label Text ="DESC" FontSize="Small" HorizontalOptions="Center" Grid.Column="4" />
                         <Label Text ="WIDTH" FontSize="Small" HorizontalOptions="Center" Grid.Column="5"/>
@@ -70,7 +70,7 @@
 
                                     <Label Margin="20,0" Text ="{Binding MDL_CNT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0"/>
                                     <Label Margin="20,0" Text ="{Binding MDL_NO}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="1"/>
-                                    <Label Margin="20,0" Text ="{Binding WIN_CNT}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
+                                    <Label Margin="20,0" Text ="{Binding BIN}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="2"/>
                                     <Label Margin="20,0" Text ="{Binding Status}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="3"/>
                                     <Label Margin="20,0" Text ="{Binding DESC}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="4"/>
                                     <Label Margin="20,0" Text ="{Binding WIDTH}" FontSize="Medium" HorizontalOptions="Center" Grid.Column="5"/>

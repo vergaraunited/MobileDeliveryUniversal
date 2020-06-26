@@ -34,16 +34,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="Tesseract-OCR" Version="1.0.4" />
-    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="4.0.0.7" />
     <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\MobileDeliveryMVVM\MobileDeliveryMVVM.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +55,9 @@
     </Compile>
     <Compile Update="Pages\CloseStopPage.xaml.cs">
       <DependentUpon>CloseStopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\OrderOptions.xaml.cs">
+      <DependentUpon>OrderOptions.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\Trucks.xaml.cs">
       <DependentUpon>Trucks.xaml</DependentUpon>
@@ -84,7 +83,7 @@
     <EmbeddedResource Update="Pages\CloseStopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\OrderDetails.xaml">
+    <EmbeddedResource Update="Pages\OrderOptions.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Orders.xaml">
@@ -120,6 +119,15 @@
     <None Update="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="Pages\ARPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\CloseStopPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Pages\ManifestDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
@@ -132,5 +140,24 @@
     <None Update="Pages\OrderDetailList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="Pages\OrderOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Orders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Stops.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Trucks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MobileDeliveryMVVM\MobileDeliveryMVVM.csproj" />
   </ItemGroup>
 </Project>

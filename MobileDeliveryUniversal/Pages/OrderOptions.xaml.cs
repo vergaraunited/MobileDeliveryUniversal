@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MobileDeliveryGeneral.Data;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,16 +6,16 @@ using Xamarin.Forms.Xaml;
 namespace MobileDeliveryUniversal.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class OrderDetails : ContentPage
+	public partial class OrderOptions : ContentPage
 	{
-        OrderData order;
+        OrderMasterData order;
         float OrdNo;
         public DateTime dteShipDate;
-        public OrderDetails ()
+        public OrderOptions()
 		{
 			InitializeComponent ();
 		}
-        public OrderDetails(OrderData od)
+        public OrderOptions(OrderMasterData od)
         {
             InitializeComponent();
             order = od;
@@ -28,7 +23,7 @@ namespace MobileDeliveryUniversal.Pages
         }
         protected override void OnAppearing()
         {
-            lblManId.Text = order.ManifestId.ToString();
+            lblManId.Text = order.ManId.ToString();
             lblOrdNo.Text = order.ORD_NO.ToString();
             //lblStopNo.Text = order.DSP_SEQ.ToString();
             lblDlrNo.Text = order.DLR_NO.ToString();
@@ -37,7 +32,7 @@ namespace MobileDeliveryUniversal.Pages
             base.OnAppearing();
         }
 
-        private void OrderDetailSelected(object sender, ItemTappedEventArgs e)
+        private void OrderOptionSelected(object sender, ItemTappedEventArgs e)
         {
             //var ord = new Orders((IMDMMessage)((ListView)sender).SelectedItem);
             //Navigation.PushAsync(ord);

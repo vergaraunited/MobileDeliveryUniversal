@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MobileDeliveryMVVM.ViewModel;assembly=MobileDeliveryMVVM"
-             xmlns:behaviors="clr-namespace:MobileDeliveryUniversal.Behaviors;assembly=MobileDeliveryUniversal"
              xmlns:converters="clr-namespace:MobileDeliveryUniversal.Converters"
+             xmlns:behaviors="clr-namespace:MobileDeliveryUniversal.Behaviors;assembly=MobileDeliveryUniversal"
              x:Class="MobileDeliveryUniversal.Pages.Trucks"
              Title="Truck" >
     

@@ -16,11 +16,11 @@ namespace MobileDeliveryUniversal.Pages
     public partial class CloseStopPage : ContentPage
     {
         //private Point[] points;
-        List<OrderData> lstOrd;
-        List<OrderData> lstBOrd;
+        List<OrderDetailsModelData> lstOrd;
+        List<OrderDetailsModelData> lstBOrd;
         StopData sd;
 
-        public CloseStopPage(StopData sd, List<OrderData> odlst, List<OrderData> bodlst)
+        public CloseStopPage(StopData sd, List<OrderDetailsModelData> odlst, List<OrderDetailsModelData> bodlst)
         {
             this.sd = sd;
             lstOrd = odlst;
@@ -92,14 +92,14 @@ namespace MobileDeliveryUniversal.Pages
         {
             if (((ListView)sender).SelectedItem == null)
                 return;
-            var ordData = (OrderData)((ListView)sender).SelectedItem;
-            var orderDetailsPage = new OrderDetails(ordData);
+            var ordData = (OrderMasterData)((ListView)sender).SelectedItem;
+            var orderOptionsPage = new OrderOptions(ordData);
             ((ListView)sender).SelectedItem = null;
             //OPDetail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
             //Navigation.PushAsync(orderDetailsPage);
             //Navigation.PopAsync(true);
             
-            NavigationPage.SetBackButtonTitle(orderDetailsPage, "Close Stop Order Details for Order Number " + ordData.ORD_NO);
+            NavigationPage.SetBackButtonTitle(orderOptionsPage, "Close Stop Order Options for Order Number " + ordData.ORD_NO);
         }
         private void SignatureChanged(object sender, EventArgs e)
         {
