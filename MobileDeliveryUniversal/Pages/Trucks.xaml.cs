@@ -2,8 +2,9 @@
 using MobileDeliveryGeneral.Data;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MobileDeliveryUniversal.Pages;
 
-namespace MobileDeliveryUniversal.Pages
+namespace MobileDeliveryUI.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Trucks : ContentPage
